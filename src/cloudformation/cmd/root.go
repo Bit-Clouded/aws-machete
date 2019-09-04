@@ -13,7 +13,8 @@ awscli cannot, such as copy a stack, etc.`
 
 func initRootCmd() *CommandManagement {
 	cm := &CommandManagement{
-		config: &config{},
+		config:     &config{},
+		cfnManager: newCfnClient(),
 	}
 	cm.root = &cobra.Command{
 		Use:   "cloudformation",

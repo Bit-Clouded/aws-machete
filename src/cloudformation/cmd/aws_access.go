@@ -25,10 +25,10 @@ type cfnManager struct {
 	iamCapabilities []*string
 }
 
-func newCfnClient() *cfnManager {
+func newCfnClient() *cfnManagement {
 	var sess = session.Must(session.NewSession())
 
-	return &cfnManager{
+	var result cfnManagement = &cfnManager{
 		cfn: cloudformation.New(sess),
 		iamCapabilities: []*string{
 			aws.String(cloudformation.CapabilityCapabilityIam),
@@ -36,6 +36,7 @@ func newCfnClient() *cfnManager {
 			aws.String(cloudformation.CapabilityCapabilityAutoExpand),
 		},
 	}
+	return &result
 }
 
 func (client *cfnManager) createChangeSet(
